@@ -118,12 +118,6 @@ print(found[ClassIndex[0]])
 
 
 model_json = model.to_json() 
-with open("DigitalNaturalist.json", "w") as json_file:
+with open(ROOT_DIR+"\\Final Deliverables\\DigitalNaturalist.json", "w") as json_file:
     json_file.write(model_json)
-
-
-
-model.save_weights("DigitalNaturalist.h5")
-print("Saved model to disk")
-
-#CNN model tested with 86% accuracy
+model.save_weights(ROOT_DIR+"\\Final Deliverables\\DigitalNaturalist.h5")

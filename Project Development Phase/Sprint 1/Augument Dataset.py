@@ -38,7 +38,7 @@ def augment_data(file_dir, n_generated_samples, save_to_dir):
             if i > n_generated_samples:
                 break
             
-# start_time = time.time()
+
 augmented_data_path = ROOT_DIR+'\Final Deliverables\\Augumented Dataset\\'
 
 augment_data(file_dir= ROOT_DIR+'\Final Deliverables\\Digital Naturalist Dataset\\Bird\\Great Indian Bustard Bird\\', n_generated_samples=8, save_to_dir=augmented_data_path+'Bird\\GIB_AUG')
@@ -49,7 +49,5 @@ augment_data(file_dir= ROOT_DIR+'\Final Deliverables\\Digital Naturalist Dataset
 augment_data(file_dir= ROOT_DIR+'\Final Deliverables\\Digital Naturalist Dataset\\Mammal\\Senenca White Deer Mammal\\', n_generated_samples=8, save_to_dir=augmented_data_path+'Mammal\\SW_Deer_AUG')
 
 
-# end_time = time.time()
-# execution_time = (end_time - start_time)
-# print("Elapsed Time : "+str(execution_time))
+
 
