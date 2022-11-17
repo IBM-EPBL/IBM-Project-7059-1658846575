@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html{
+            min-height: 100%;
+        }
+
+        body{
+            margin: 2%;
+            background: linear-gradient(312deg, rgba(54,209,220,1) 0%, rgba(91,134,229,1) 100%);
+        }
+
+        h1,h3{
+            color: white;
+        }
+
+    </style>
+    <title>Digital Naturalist</title>
+</head>
+<body>
+    <h1> Digital Naturalist - AI Enabled tool for Biodiversity Researchers </h1>
+    <h3>Upload your image to identify the species</h3>
+    <div class="main-action">
+        <form action="/predict" id="upload-file" method="post" enctype="multipart/form-data">
+            <input type="file" name="upload-btn" id="upload-btn" required accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" >
+            <input type="submit" value="Upload" class="upload" onsubmit="check_file">
+            <input type="reset" value="Reset" class="upload">
+
+        </form>
+    </div>
+    <script>
+        document.getElementById("upload-btn").addEventListener("change", validateFile)
+        
+        function validateFile()
+        {
+          const allowedExtensions =  ['jpg','png'],
+                sizeLimit = 1_000_000;
+          const { name:fileName, size:fileSize } = this.files[0];
+          const fileExtension = fileName.split(".").pop();
+          if(!allowedExtensions.includes(fileExtension)){
+            alert("Only image files - .jpg, .jpeg, .png, .tiff ");
+            this.value = null;
+          }else if(fileSize > sizeLimit){
+            alert("file size too large")
+            this.value = null;
+          }
+        }
+
+        </script>
+</body>
+</html>
