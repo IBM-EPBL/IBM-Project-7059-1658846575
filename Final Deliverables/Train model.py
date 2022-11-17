@@ -105,19 +105,34 @@ weights = model.get_weights()
 model.set_weights(weights)
 
 
-image_number = random.randint(0,len(X_test))
-predictions = model.predict([X_test[image_number].reshape(1, 224,224,3)])
-
-for idx, result, x in zip(range(0,6), found, predictions[0]):
-   print("Label: {}, Type : {}, Species : {} , Score : {}%".format(idx, result[0],result[1], round(x*100,3)))
-
-
-
-ClassIndex=np.argmax(model.predict([X_test[image_number].reshape(1, 224,224,3)]),axis=1)
-print(found[ClassIndex[0]])
-
 
 model_json = model.to_json() 
 with open(ROOT_DIR+"\\Final Deliverables\\DigitalNaturalist.json", "w") as json_file:
     json_file.write(model_json)
 model.save_weights(ROOT_DIR+"\\Final Deliverables\\DigitalNaturalist.h5")
+
+num = random.randint(0,len(X_test))
+predictions = model.predict([X_test[num].reshape(1, 224,224,3)])
+
+
+
+accuracy = 0
+count_test = 10
+for idx, result, x in zip(range(0,count_test), found, predictions[0]):
+   print("Type: {}, Name : {}, Class : {} , Prediction Score : {}%".format(idx, result[0],result[1], round(x*100,3)))
+   accuracy+= round(x*100,3)
+   
+ClassIndex=np.argmax(model.predict([X_test[num].reshape(1, 224,224,3)]),axis=1)
+print(found[ClassIndex[0]])
+ 
+print("==========================================================")   
+print("Accuracy of output data = ",100 -accuracy/count_test)
+print("==========================================================")
+
+
+
+
+
+
+
+
